@@ -50,3 +50,20 @@
 .List-container_sort_row_text{
     margin: auto 5px;
 }
+
+.List-container_sort_row_header_icon_0{
+    display: none;
+}
+
+.List-container_sort_row_header_icon_1{
+    width: 8px;
+    height: 8px;
+    margin-left: 10px;
+}
+
+.List-container_sort_row_header_icon_2{
+    width: 8px;
+    height: 8px;
+    margin-left: 10px;
+    transform: rotate(180deg);
+}

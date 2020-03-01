@@ -44,16 +44,22 @@
     max-width: 50%;
 }
 
+.Mail-field_subject_tooltip {
+    width:100%;
+    display: inline-flex;
+}
+
 .Mail-field_subject_text{
     width: 90% !important;
     max-width: 90%;
+    margin: auto;
 }
 
 .Mail-field_attachment{
     width: 5%;
     max-width: 5%;
     float: right;
-    margin-left: auto;
+    margin: auto;
 }
 
 .Mail-field_date{

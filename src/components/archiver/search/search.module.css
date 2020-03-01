@@ -1,6 +1,5 @@
 .filter{
     width: 275px;
-    cursor: pointer;
     background: #cccccc;
     display: inline-flex;
     border-radius: 7px;
@@ -28,6 +27,7 @@
     border-bottom-right-radius: 7px;
     padding: 0px 10px;
     border-color: #ddd;
+    cursor: pointer;
 }
 
 .filter-search_icon{

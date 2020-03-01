@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DatePicker } from 'antd';
 import * as styles from './search.module.css';
 
 import { ReactComponent as SearchIcon } from 'assets/icons/icon_search.svg';
 import { ReactComponent as CalenderIcon } from 'assets/icons/icon_calender.svg';
+import moment from 'moment';
 
 
 const { RangePicker } = DatePicker;
 
-function Search(props: { onChange: (dates: any, dateString: string[]) => void }) {
+function Search(props: { onChange: (dates: moment.Moment[]) => void }) {
+  const [getDates, setDates] = useState(new Array<moment.Moment>());
+
   return (
     <div>
       <div className={styles["filter"]}>
@@ -17,11 +20,13 @@ function Search(props: { onChange: (dates: any, dateString: string[]) => void })
           <RangePicker 
             format={"YYYY/M/D"}
             separator="-"
-            onCalendarChange={(date, dateString) => props.onChange(date, dateString)}
+            onCalendarChange={(dates, dateString) => setDates(dates as moment.Moment[])}
             allowClear={false}
             suffixIcon={null}></RangePicker>
         </div>
-        <button className={styles["filter-search"]}>
+        <button 
+          onClick={() => props.onChange(getDates)}
+          className={styles["filter-search"]}>
           <SearchIcon className={styles["filter-search_icon"]}/>
         </button>
       </div>

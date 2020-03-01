@@ -26,11 +26,11 @@ class Archiver extends React.Component<ArchiverProps, ArchiverState> {
     });
   }
 
-  onRangeChange(dates: Moment[], dateString: string[]) {
+  onRangeChange(dates: moment.Moment[]) {
     let filteredMails = this.props.mails;
     if(dates[0] && dates[1]){
       filteredMails = this.props.mails.filter((mail) => {
-        return moment(mail.date, Constant.DATE_FORMAT).isBetween(dates[0], dates[1])
+        return moment(mail.date, Constant.DATE_FORMAT).isBetween(dates[0], dates[1], "days", "[]")
       })
     }
     this.setState({
@@ -42,7 +42,7 @@ class Archiver extends React.Component<ArchiverProps, ArchiverState> {
     return (
       <div className={styles["Archiver"]}>
           <header className={styles["Archiver-header"]}>
-            <Search onChange={(dates, dateString) => this.onRangeChange(dates, dateString)}></Search>
+            <Search onChange={(dates) => this.onRangeChange(dates)}></Search>
           </header>
           <section className={styles["Archiver-section"]}>
             <List mails={this.state.mails}></List>

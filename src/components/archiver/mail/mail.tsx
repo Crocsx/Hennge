@@ -2,6 +2,25 @@ import React from 'react';
 import { IMail } from 'types/default.t';
 import * as styles from './mail.module.css';
 import { ReactComponent as AttachmentIcon } from 'assets/icons/icon_clip.svg';
+import Constant from 'App.constant';
+import moment from 'moment';
+import { Tooltip } from 'antd';
+
+const getDisplayDate = (date: string): string => {
+    const dMoment = moment(date, Constant.DATE_FORMAT);
+    var isToday = dMoment.isSame(new Date(), "day");
+    if(isToday) {
+        return dMoment.format("HH:mm");
+    }
+
+    var isSameWeek = dMoment.isSame(new Date(), "week");
+    if(isSameWeek) {
+        return dMoment.format("MMM DD");
+    }
+
+    return dMoment.format("YYYY/MM/DD");
+}
+
 
 function Mail(props: { mail : IMail}) {
 const { mail } = {...props};
@@ -18,6 +37,7 @@ const { mail } = {...props};
             </div>}
         </div>
         <div className={`${styles["Mail-field"]} ${styles["Mail-field_subject"]}`}>
+            <Tooltip className={styles["Mail-field_subject_tooltip"]} mouseEnterDelay={3} title={mail.content}>
             <p className={styles["Mail-field_subject_text"]}>{mail.subject}</p>
             {
                 mail.attachments.length > 0 && 
@@ -25,9 +45,10 @@ const { mail } = {...props};
                     <AttachmentIcon></AttachmentIcon>
                 </div>
             }
+            </Tooltip>
         </div>
         <div className={`${styles["Mail-field"]} ${styles["Mail-field_date"]}`}>
-            <p>{mail.date}</p>
+            <p>{getDisplayDate(mail.date)}</p>
         </div>
     </div>
   );

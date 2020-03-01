@@ -52,7 +52,7 @@
 .Mail-field_subject_text{
     width: 90% !important;
     max-width: 90%;
-    margin: auto;
+    margin: auto 0;
 }
 
 .Mail-field_attachment{

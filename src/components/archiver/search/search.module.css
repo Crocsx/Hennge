@@ -1,0 +1,35 @@
+.filter{
+    width: 275px;
+    cursor: pointer;
+    background: #cccccc;
+    display: inline-flex;
+    border-radius: 7px;
+}
+
+.filter-calender{
+    padding: 5px 30px 5px 20px;
+    display: inline-flex;
+}
+
+.filter-calender_icon{
+    width: 26px;
+    height: 26px;
+    margin: auto;
+}
+
+.filter-range{
+    width: 40px;
+    border: 0px;
+}
+
+.filter-search{
+    border: solid 1px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: 0px 10px;
+    border-color: #ddd;
+}
+
+.filter-search_icon{
+    display: block;
+}

@@ -7,3 +7,7 @@
 .ant-picker-input > input{
     color: black; 
 }
+
+.ant-picker-input > input::placeholder {
+    color:black;
+}

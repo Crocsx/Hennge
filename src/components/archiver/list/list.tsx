@@ -118,6 +118,9 @@ function List(props: {mails: Mail[]}): JSX.Element {
                   }
               </div>
             })}
+            <div className={styles["List-container_sort_row_header"]}>
+              Preview
+            </div>
           </div>
           <div className={styles["List-container_tabe"]}>
             {getMails.map((mail, index) => {

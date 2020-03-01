@@ -41,12 +41,12 @@ class Archiver extends React.Component<ArchiverProps, ArchiverState> {
   render(): JSX.Element {
     return (
       <div className={styles["Archiver"]}>
-          <header className={styles["Archiver-header"]}>
-            <Search onChange={(dates): void => this.onRangeChange(dates)}></Search>
-          </header>
-          <section className={styles["Archiver-section"]}>
-            <List mails={this.state.mails}></List>
-          </section>
+        <header className={styles["Archiver-header"]}>
+          <Search onChange={(dates): void => this.onRangeChange(dates)}></Search>
+        </header>
+        <section className={styles["Archiver-section"]}>
+          <List mails={this.state.mails}></List>
+        </section>
       </div>
     );
   }

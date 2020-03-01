@@ -1,12 +1,20 @@
-.Mail{
-    display: inline-flex;
-    width: 100%;
-    height: 35px;
-    border-bottom: solid 1px;
-    border-color: #cccccc;
+.Mail-expanded{
+    height: 100px;
 }
 
-.Mail:hover{
+.Mail-collapsed{
+    height: 35px;
+}
+
+.Mail-container{
+    display: inline-flex;
+    width: 100%;
+    border-bottom: solid 1px;
+    border-color: #cccccc;
+    height: 35px;
+}
+
+.Mail-container:hover{
     background-color: #f5f5f5;
     color: blue;
     cursor: pointer;
@@ -40,8 +48,8 @@
 }
 
 .Mail-field_subject{
-    width: 50%;
-    max-width: 50%;
+    width: 46%;
+    max-width: 46%;
 }
 
 .Mail-field_subject_tooltip {
@@ -63,7 +71,11 @@
 }
 
 .Mail-field_date{
-    width: 10%;
+    width: 7%;
+}
+
+.Mail-field_preview{
+    width: 7%;
 }
 
 .Mail-field > p{
@@ -72,4 +84,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+.Mail-content {
+    height: 70px;
+    overflow: auto;
+    border-bottom: solid 1px;
 }

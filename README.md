@@ -1,3 +1,12 @@
+# Start 
+
+`npm install`
+`npm start`
+
+# Tools 
+
+- Done with ReactJs (react-create-app) and Typescript
+
 # Improvable : 
 
 ## Code :
@@ -11,7 +20,7 @@
 - Add a tooltip to the "destinatary" category over the "+1" "+2" in order to see all the Search Results
 - It will need some pagination when there is a lot of emails, or infinite scrolling. (I personally prefer the pagination)
 - Since it's an app for security incidents, I would add some preset regex (like ip adress, email, adress phone number...) and higlight in red all the mail or keyword that contain one of those preset values.
-- At the moment, I display the mail preview with a tooltip set to 3 second. I would like instead to add a simple button preview at the end row that would expand (like an accordion https://material.angular.io/components/expansion/overview) to display the preview. ALSO, It woulkd be nice to add one notification pill over this button in case the content of the message contain sensitive data (check point above) 
+- It be nice to add to the preview button a red notification pill. That pill would show how many sensisble match (above proposition) have matched in the mail content.
 
 
 # Description:

@@ -1,4 +1,4 @@
-export interface IMail {
+export interface Mail {
     from: string;
     to: string[];
     date: string;

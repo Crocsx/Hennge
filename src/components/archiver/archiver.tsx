@@ -2,31 +2,31 @@ import React from 'react';
 import Search from './search/search';
 import List from './list/list';
 import * as styles from './archiver.module.css'
-import { IMail } from 'types/default.t';
+import { Mail } from 'types/default.t';
 import moment, { Moment } from 'moment';
 import Constant from 'App.constant';
 
 
 interface ArchiverState {
-  mails: IMail[];
+  mails: Mail[];
 }
 
 interface ArchiverProps {
-  mails: IMail[];
+  mails: Mail[];
 }
 
 class Archiver extends React.Component<ArchiverProps, ArchiverState> {
   state = {
-    mails: new Array<IMail>()
+    mails: new Array<Mail>()
   }
 
-  componentDidMount(){
+  componentDidMount(): void {
     this.setState({
       mails: this.props.mails
     });
   }
 
-  onRangeChange(dates: moment.Moment[]) {
+  onRangeChange(dates: moment.Moment[]): void {
     let filteredMails = this.props.mails;
     if(dates[0] && dates[1]){
       filteredMails = this.props.mails.filter((mail) => {
@@ -38,11 +38,11 @@ class Archiver extends React.Component<ArchiverProps, ArchiverState> {
     });
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className={styles["Archiver"]}>
           <header className={styles["Archiver-header"]}>
-            <Search onChange={(dates) => this.onRangeChange(dates)}></Search>
+            <Search onChange={(dates): void => this.onRangeChange(dates)}></Search>
           </header>
           <section className={styles["Archiver-section"]}>
             <List mails={this.state.mails}></List>

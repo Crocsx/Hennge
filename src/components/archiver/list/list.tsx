@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { IMail } from 'types/default.t';
+import { Mail } from 'types/default.t';
 
 import { ReactComponent as SortIcon } from 'assets/icons/icon_arrow01.svg';
 import * as styles from './list.module.css';
 import moment from 'moment';
 import Logo from 'assets/images/logo.png';
-import Mail from '../mail/mail';
+import MailPreview from 'components/archiver/mailPreview/mailPreview';
 import Constant from 'App.constant';
 
 // 3 sort type, desc, asc, and none
@@ -17,11 +17,11 @@ enum SortType{
   DATE = "Date"
 }
 
-const sortList = (list: IMail[], sortBy: SortType, desc: 1 | -1): IMail[] => {
-  let mails = [...list];
+const sortList = (list: Mail[], sortBy: SortType, desc: 1 | -1): Mail[] => {
+  const mails = [...list];
   switch(sortBy){
     case SortType.FROM:
-      mails.sort((m1: IMail, m2: IMail) => {
+      mails.sort((m1: Mail, m2: Mail) => {
         let x = m1.from;
         let y = m2.from;
         if(x.toLowerCase() !== y.toLowerCase()) {
@@ -31,8 +31,8 @@ const sortList = (list: IMail[], sortBy: SortType, desc: 1 | -1): IMail[] => {
         return x > y ? 1 * desc : (x < y ? -1 * desc : 0);
       });
     break;
-    case SortType.TO: 
-      mails.sort((m1: IMail, m2: IMail) => {
+    case SortType.TO:
+      mails.sort((m1: Mail, m2: Mail) => {
         let x = m1.to[0];
         let y = m2.to[0];
         if(x.toLowerCase() !== y.toLowerCase()) {
@@ -42,8 +42,8 @@ const sortList = (list: IMail[], sortBy: SortType, desc: 1 | -1): IMail[] => {
         return x > y ? 1 * desc : (x < y ? -1 * desc : 0);
       });
     break;
-    case SortType.SUBJECT: 
-      mails.sort((m1: IMail, m2: IMail) => {
+    case SortType.SUBJECT:
+      mails.sort((m1: Mail, m2: Mail) => {
         let x = m1.subject;
         let y = m2.subject;
         if(x.toLowerCase() !== y.toLowerCase()) {
@@ -53,8 +53,8 @@ const sortList = (list: IMail[], sortBy: SortType, desc: 1 | -1): IMail[] => {
         return x > y ? 1 * desc : (x < y ? -1 * desc : 0);
       })
     break;
-    case SortType.DATE: 
-      mails.sort((m1: IMail, m2: IMail) => {
+    case SortType.DATE:
+      mails.sort((m1: Mail, m2: Mail) => {
         if(moment(m1.date, Constant.DATE_FORMAT).isAfter(moment(m2.date, Constant.DATE_FORMAT))){
           return 1 * desc;
         } else {
@@ -66,7 +66,7 @@ const sortList = (list: IMail[], sortBy: SortType, desc: 1 | -1): IMail[] => {
   return mails;
 }
 
-function List(props: {mails: IMail[]}) {
+function List(props: {mails: Mail[]}): JSX.Element {
   const { mails } = props;
   const [getMails, setMails] = useState(mails);
   useEffect(() => { setMails(mails) }, [mails]);
@@ -79,7 +79,7 @@ function List(props: {mails: IMail[]}) {
   // v % 3 === 1 => sort asc
   // v % 3 === 2 === => sort desc
   // v % 3 === 0 => no sorting
-  const selectSortBy = (filter: SortType) => {
+  const selectSortBy = (filter: SortType): void => {
     const currFilter = getSortBy;
     const filterValue = currFilter.type === filter ? currFilter.counter + 1 : 1;
 
@@ -96,23 +96,23 @@ function List(props: {mails: IMail[]}) {
     <div className={styles["List"]}>
       <div className={styles["List-counter"]}>Results: {mails.length} mail{mails.length > 1 ? "s" : ""}</div>
       {
-        mails.length === 0 && 
-        <div className={styles["List-container-empty"]}> 
+        mails.length === 0 &&
+        <div className={styles["List-container-empty"]}>
           <img src={Logo} alt="logo" className={styles["List-container_logo"]}></img>
         </div>
       }
       {
-        mails.length > 0 && 
+        mails.length > 0 &&
         <div className={styles["List-container"]}>
           <div className={styles["List-container_sort"]}>
             {Object.keys(SortType).filter(
                 value => (isNaN(Number(value)) === true)
               ).map(type => {
               return <div
-                key={type} 
-                onClick={() => selectSortBy(SortType[type])} 
+                key={type}
+                onClick={(): void => selectSortBy(SortType[type])}
                 className={styles["List-container_sort_row_header"]}>
-                  {SortType[type]} 
+                  {SortType[type]}
                   {getSortBy.type === SortType[type] &&
                     <SortIcon className={styles["List-container_sort_row_header_icon_"+(getSortBy.counter % SORTING_TYPE)]}></SortIcon>
                   }
@@ -121,7 +121,7 @@ function List(props: {mails: IMail[]}) {
           </div>
           <div className={styles["List-container_tabe"]}>
             {getMails.map((mail, index) => {
-                return <Mail key={index} mail={mail}></Mail>
+                return <MailPreview key={index} mail={mail}></MailPreview>
             })}
           </div>
         </div>

@@ -8,7 +8,7 @@ import 'styles/override.css';
 
 import mails from 'data/mail.json';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
       <header className="App-header">Archiver Demo</header>

@@ -9,7 +9,7 @@ import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
-function Search(props: { onChange: (dates: moment.Moment[]) => void }) {
+function Search(props: { onChange: (dates: moment.Moment[]) => void }): JSX.Element {
   const [getDates, setDates] = useState(new Array<moment.Moment>());
 
   return (
@@ -17,15 +17,15 @@ function Search(props: { onChange: (dates: moment.Moment[]) => void }) {
       <div className={styles["filter"]}>
         <div className={styles["filter-calender"]}>
           <CalenderIcon className={styles["filter-calender_icon"]}></CalenderIcon>
-          <RangePicker 
+          <RangePicker
             format={"YYYY/M/D"}
             separator="-"
-            onCalendarChange={(dates, dateString) => setDates(dates as moment.Moment[])}
+            onCalendarChange={(dates): void => setDates(dates as moment.Moment[])}
             allowClear={false}
             suffixIcon={null}></RangePicker>
         </div>
-        <button 
-          onClick={() => props.onChange(getDates)}
+        <button
+          onClick={(): void => props.onChange(getDates)}
           className={styles["filter-search"]}>
           <SearchIcon className={styles["filter-search_icon"]}/>
         </button>
